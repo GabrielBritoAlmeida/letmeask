@@ -1,4 +1,3 @@
 export function App() {
-  return <div >New Project!</div>;
+  return <div>New Project!</div>
 }
-
