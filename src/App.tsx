@@ -1,3 +1,9 @@
+import { Home } from 'pages/Home'
+
 export function App() {
-  return <div>New Project!</div>
+  return (
+    <div>
+      <Home />
+    </div>
+  )
 }
