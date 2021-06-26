@@ -1,4 +1,7 @@
-import { Box, Grid, Image, Text, Flex } from '@chakra-ui/react'
+import { Box, Grid, Image, Text, Flex, Input, VStack } from '@chakra-ui/react'
+import { ButtonBase } from 'components/ButtonBase'
+import { CgEnter } from 'react-icons/cg'
+
 import illustrationImg from 'assets/images/illustration.svg'
 import logoImg from 'assets/images/logo.svg'
 import googleIconImg from 'assets/images/google-icon.svg'
@@ -30,26 +33,40 @@ export function HomeTemplate() {
       </Box>
 
       <Flex as="main" align="center" justify="center" flex="8" p="0 32px">
-        <Flex
-          flexDirection="column"
+        <VStack
+          spacing="24px"
           w="100%"
           maxW="320px"
           align="stretch"
           textAlign="center"
         >
           <Image src={logoImg} alt="Logo letmeask" alignSelf="center" />
-          <button>
-            <Image src={googleIconImg} alt="Logo do Google" />
-            Crie sua sala com o Google
-          </button>
+          <ButtonBase
+            isFullWidth
+            colorScheme="red"
+            leftIcon={
+              <Image src={googleIconImg} alt="Logo google" alignSelf="center" />
+            }
+            text="Crie sua sala com o Google"
+          />
 
-          <div>ou entre em uma sala</div>
+          <Text color="gray.600" fontSize="sm">
+            ou entre em uma sala
+          </Text>
 
-          <form>
-            <input type="text" placeholder="Digite o código da sala" />
-            <button type="submit">Entrar na sala</button>
-          </form>
-        </Flex>
+          <Input
+            type="text"
+            placeholder="Digite o código da sala"
+            focusBorderColor="#6b46c1"
+          />
+          <ButtonBase
+            isFullWidth
+            colorScheme="purple"
+            text="Entrar na sala"
+            type="submit"
+            leftIcon={<CgEnter />}
+          />
+        </VStack>
       </Flex>
     </Grid>
   )
