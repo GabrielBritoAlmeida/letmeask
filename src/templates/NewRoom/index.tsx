@@ -4,15 +4,9 @@ import { CgEnter } from 'react-icons/cg'
 
 import illustrationImg from 'assets/images/illustration.svg'
 import logoImg from 'assets/images/logo.svg'
-import { useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export function NewRoomTemplate() {
-  const { push } = useHistory()
-
-  function navigateToHome() {
-    push('/')
-  }
-
   return (
     <Grid w="100%" h="100vh" templateColumns="repeat(2, 1fr)">
       <Box
@@ -67,14 +61,8 @@ export function NewRoomTemplate() {
 
           <Text color="#737380" fontSize="sm" display="flex">
             Quer entrar em uma sala existente?
-            <Text
-              onClick={navigateToHome}
-              color="pink.600"
-              fontSize="sm"
-              ml="2"
-              cursor="pointer"
-            >
-              Clique aqui!
+            <Text color="pink.600" fontSize="sm" ml="2">
+              <Link to="/"> Clique aqui!</Link>
             </Text>
           </Text>
         </VStack>
