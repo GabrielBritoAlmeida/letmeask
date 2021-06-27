@@ -3,11 +3,9 @@ import { useState, createContext, ReactNode, useContext } from 'react'
 import { auth, firebase } from 'services/firebase'
 
 type UserProps = {
-  user?: {
-    id: string
-    name: string
-    avatar: string
-  }
+  id: string
+  name: string
+  avatar: string
 }
 
 type AuthenticationProviderPros = {
@@ -35,7 +33,7 @@ export function AuthenticationProvider({
       return false
     }
   })
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState<UserProps>()
 
   useMemo(() => {
     localStorage.setItem(
