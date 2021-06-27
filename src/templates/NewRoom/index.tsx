@@ -52,7 +52,6 @@ export function NewRoomTemplate() {
           />
           <ButtonBase
             isFullWidth
-            letterSpacing="wider"
             colorScheme="purple"
             text="Entrar na sala"
             type="submit"

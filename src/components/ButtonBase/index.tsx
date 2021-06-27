@@ -7,7 +7,13 @@ interface ButtonProps extends ButtonPropsDefault {
 export function ButtonBase({ text, ...prop }: ButtonProps) {
   return (
     <div>
-      <Button variant="solid" fontSize="md" p="0 32px" {...prop}>
+      <Button
+        variant="solid"
+        fontSize="md"
+        p="0 32px"
+        letterSpacing="wider"
+        {...prop}
+      >
         {text}
       </Button>
     </div>
