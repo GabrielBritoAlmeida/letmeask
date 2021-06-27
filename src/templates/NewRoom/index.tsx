@@ -5,8 +5,11 @@ import { CgEnter } from 'react-icons/cg'
 import illustrationImg from 'assets/images/illustration.svg'
 import logoImg from 'assets/images/logo.svg'
 import { Link } from 'react-router-dom'
+import { useNewRoomContext } from 'hooks/context/NewRoom'
 
 export function NewRoomTemplate() {
+  const { newRoom, setNewRoom, handleCreateRoom } = useNewRoomContext()
+
   return (
     <Grid w="100%" h="100vh" templateColumns="repeat(2, 1fr)">
       <Box
@@ -50,18 +53,20 @@ export function NewRoomTemplate() {
             type="text"
             placeholder="Nome da sala"
             focusBorderColor="#6b46c1"
+            value={newRoom}
+            onChange={(event) => setNewRoom(event.target.value)}
           />
           <ButtonBase
             isFullWidth
             colorScheme="purple"
             text="Criar sala"
-            type="submit"
             leftIcon={<CgEnter />}
+            onClick={(event) => handleCreateRoom(event)}
           />
 
           <Text color="#737380" fontSize="sm" display="flex">
             Quer entrar em uma sala existente?
-            <Text color="pink.600" fontSize="sm" ml="2">
+            <Text as="span" color="pink.600" fontSize="sm" ml="2">
               <Link to="/"> Clique aqui!</Link>
             </Text>
           </Text>

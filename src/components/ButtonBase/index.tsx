@@ -12,6 +12,7 @@ export function ButtonBase({ text, ...prop }: ButtonProps) {
         fontSize="md"
         fontWeight="normal"
         p="0 32px"
+        type="button"
         {...prop}
       >
         {text}
