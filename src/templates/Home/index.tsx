@@ -6,20 +6,18 @@ import illustrationImg from 'assets/images/illustration.svg'
 import logoImg from 'assets/images/logo.svg'
 import googleIconImg from 'assets/images/google-icon.svg'
 
-// import { useHistory } from 'react-router-dom'
-import { auth, firebase } from 'services/firebase'
+import { useHistory } from 'react-router-dom'
+import { useAuthentication } from 'hooks/context/Authentication'
 
 export function HomeTemplate() {
-  // const { push } = useHistory()
+  const { signWithGoogle } = useAuthentication()
+  const history = useHistory()
 
-  function handleCreateRoom() {
-    const provider = new firebase.auth.GoogleAuthProvider()
-
-    auth.signInWithPopup(provider).then((result) => {
-      console.log(result)
-    })
-
-    // push('/rooms/new')
+  async function handleCreateRoom() {
+    const success = await signWithGoogle()
+    if (success) {
+      history.push('/rooms/new')
+    }
   }
 
   return (

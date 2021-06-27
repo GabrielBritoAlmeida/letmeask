@@ -7,7 +7,12 @@ import { useAuthentication } from 'hooks/context/Authentication'
 export function Routes() {
   const { isAuthentication } = useAuthentication()
 
-  if (!isAuthentication) return <Home />
+  if (!isAuthentication)
+    return (
+      <BrowserRouter>
+        <Home />
+      </BrowserRouter>
+    )
 
   return (
     <BrowserRouter>
