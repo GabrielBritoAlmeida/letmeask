@@ -6,6 +6,7 @@ type AuthenticationProviderPros = {
 
 type AuthenticationValueProps = {
   isAuthentication: boolean
+  setIsAuthentication: (isAuthentication: boolean) => void
 }
 
 const AuthenticationContext = createContext({} as AuthenticationValueProps)
@@ -16,7 +17,9 @@ export function AuthenticationProvider({
   const [isAuthentication, setIsAuthentication] = useState(false)
 
   return (
-    <AuthenticationContext.Provider value={{ isAuthentication }}>
+    <AuthenticationContext.Provider
+      value={{ isAuthentication, setIsAuthentication }}
+    >
       {children}
     </AuthenticationContext.Provider>
   )
