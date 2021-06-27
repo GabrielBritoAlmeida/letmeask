@@ -1,6 +1,9 @@
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+
 import { Home } from 'pages/Home'
 import { NewRoom } from 'pages/NewRoom'
+import { Room } from 'pages/Room'
+import { NotAuthentication } from 'pages/NotAuthentication'
 
 import { useAuthentication } from 'hooks/context/Authentication'
 
@@ -10,14 +13,21 @@ export function Routes() {
   if (!isAuthentication || !user)
     return (
       <BrowserRouter>
-        <Home />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/rooms/room" exact component={Room} />
+          <Route component={NotAuthentication} />
+        </Switch>
       </BrowserRouter>
     )
 
   return (
     <BrowserRouter>
-      <Route path="/" exact component={Home} />
-      <Route path="/rooms/new" component={NewRoom} />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/rooms/new" exact component={NewRoom} />
+        <Route path="/rooms/room" exact component={Room} />
+      </Switch>
     </BrowserRouter>
   )
 }
