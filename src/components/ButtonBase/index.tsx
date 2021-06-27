@@ -10,8 +10,8 @@ export function ButtonBase({ text, ...prop }: ButtonProps) {
       <Button
         variant="solid"
         fontSize="md"
+        fontWeight="normal"
         p="0 32px"
-        letterSpacing="wider"
         {...prop}
       >
         {text}

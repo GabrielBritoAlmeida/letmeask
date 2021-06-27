@@ -4,8 +4,15 @@ import { CgEnter } from 'react-icons/cg'
 
 import illustrationImg from 'assets/images/illustration.svg'
 import logoImg from 'assets/images/logo.svg'
+import { useHistory } from 'react-router-dom'
 
 export function NewRoomTemplate() {
+  const { push } = useHistory()
+
+  function navigateToHome() {
+    push('/')
+  }
+
   return (
     <Grid w="100%" h="100vh" templateColumns="repeat(2, 1fr)">
       <Box
@@ -53,14 +60,20 @@ export function NewRoomTemplate() {
           <ButtonBase
             isFullWidth
             colorScheme="purple"
-            text="Entrar na sala"
+            text="Criar sala"
             type="submit"
             leftIcon={<CgEnter />}
           />
 
           <Text color="#737380" fontSize="sm" display="flex">
             Quer entrar em uma sala existente?
-            <Text color="pink.600" fontSize="sm" ml="2" cursor="pointer">
+            <Text
+              onClick={navigateToHome}
+              color="pink.600"
+              fontSize="sm"
+              ml="2"
+              cursor="pointer"
+            >
               Clique aqui!
             </Text>
           </Text>

@@ -6,7 +6,15 @@ import illustrationImg from 'assets/images/illustration.svg'
 import logoImg from 'assets/images/logo.svg'
 import googleIconImg from 'assets/images/google-icon.svg'
 
+import { useHistory } from 'react-router-dom'
+
 export function HomeTemplate() {
+  const { push } = useHistory()
+
+  function navigateToNewRoom() {
+    push('/rooms/new')
+  }
+
   return (
     <Grid w="100%" h="100vh" templateColumns="repeat(2, 1fr)">
       <Box
@@ -48,6 +56,7 @@ export function HomeTemplate() {
               <Image src={googleIconImg} alt="Logo google" alignSelf="center" />
             }
             text="Crie sua sala com o Google"
+            onClick={navigateToNewRoom}
           />
 
           <Text color="gray.600" fontSize="sm">

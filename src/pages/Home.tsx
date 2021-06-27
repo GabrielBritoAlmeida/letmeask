@@ -1,6 +1,5 @@
-// import { HomeTemplate } from 'templates/Home'
-import { NewRoomTemplate } from 'templates/NewRoom'
+import { HomeTemplate } from 'templates/Home'
 
 export function Home() {
-  return <NewRoomTemplate />
+  return <HomeTemplate />
 }
