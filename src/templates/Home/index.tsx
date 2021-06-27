@@ -10,15 +10,15 @@ import { useHistory } from 'react-router-dom'
 import { useAuthentication } from 'hooks/context/Authentication'
 
 export function HomeTemplate() {
-  const { signWithGoogle, isAuthentication } = useAuthentication()
+  const { signWithGoogle, isAuthentication, user } = useAuthentication()
   const { push } = useHistory()
 
   async function handleCreateRoom() {
-    if (isAuthentication) {
+    if (isAuthentication && user) {
       push('/rooms/new')
     }
 
-    if (!isAuthentication) {
+    if (!isAuthentication || !user) {
       const success = await signWithGoogle()
       if (success) push('/rooms/new')
     }

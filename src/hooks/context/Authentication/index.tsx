@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { useEffect } from 'react'
 import { useState, createContext, ReactNode, useContext } from 'react'
 import { auth, firebase } from 'services/firebase'
 
@@ -41,6 +42,34 @@ export function AuthenticationProvider({
       JSON.stringify(isAuthentication)
     )
   }, [isAuthentication])
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        const { displayName, photoURL, uid } = user
+
+        if (!displayName || !photoURL) {
+          throw new Error('Missing information from Google Account')
+        }
+
+        setUser({
+          id: uid,
+          name: displayName,
+          avatar: photoURL
+        })
+
+        setIsAuthentication(true)
+        return true
+      } else {
+        setIsAuthentication(false)
+        return false
+      }
+    })
+
+    return () => {
+      unsubscribe()
+    }
+  }, [])
 
   async function signWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider()

@@ -5,9 +5,9 @@ import { NewRoom } from 'pages/NewRoom'
 import { useAuthentication } from 'hooks/context/Authentication'
 
 export function Routes() {
-  const { isAuthentication } = useAuthentication()
+  const { isAuthentication, user } = useAuthentication()
 
-  if (!isAuthentication)
+  if (!isAuthentication || !user)
     return (
       <BrowserRouter>
         <Home />
