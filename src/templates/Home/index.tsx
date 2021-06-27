@@ -7,12 +7,20 @@ import logoImg from 'assets/images/logo.svg'
 import googleIconImg from 'assets/images/google-icon.svg'
 
 import { useHistory } from 'react-router-dom'
+import { auth, firebase } from 'services/firebase'
 
 export function HomeTemplate() {
   const { push } = useHistory()
+  console.log('🚀', push)
 
-  function navigateToNewRoom() {
-    push('/rooms/new')
+  function handleCreateRoom() {
+    const provider = new firebase.auth.GoogleAuthProvider()
+
+    auth.signInWithPopup(provider).then((result) => {
+      console.log(result)
+    })
+
+    // push('/rooms/new')
   }
 
   return (
@@ -56,7 +64,7 @@ export function HomeTemplate() {
               <Image src={googleIconImg} alt="Logo google" alignSelf="center" />
             }
             text="Crie sua sala com o Google"
-            onClick={navigateToNewRoom}
+            onClick={handleCreateRoom}
           />
 
           <Text color="gray.600" fontSize="sm">
