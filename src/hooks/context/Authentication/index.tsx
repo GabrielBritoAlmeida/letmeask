@@ -16,7 +16,7 @@ type AuthenticationValueProps = {
   isAuthentication: boolean
   setIsAuthentication: (isAuthentication: boolean) => void
   signWithGoogle: () => Promise<boolean>
-  user: UserProps
+  user: UserProps | undefined
 }
 
 const AuthenticationContext = createContext({} as AuthenticationValueProps)
