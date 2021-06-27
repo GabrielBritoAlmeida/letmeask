@@ -7,12 +7,12 @@ import { useAuthentication } from 'hooks/context/Authentication'
 export function Routes() {
   const { isAuthentication } = useAuthentication()
 
-  return isAuthentication ? (
+  if (!isAuthentication) return <Home />
+
+  return (
     <BrowserRouter>
       <Route path="/" exact component={Home} />
       <Route path="/rooms/new" component={NewRoom} />
     </BrowserRouter>
-  ) : (
-    <Home />
   )
 }
