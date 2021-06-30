@@ -1,14 +1,24 @@
 import { Box, Grid, Image, Text, Flex, Input, VStack } from '@chakra-ui/react'
 import { ButtonBase } from 'components/ButtonBase'
 import { CgEnter } from 'react-icons/cg'
+import { useHistory } from 'react-router-dom'
 
 import illustrationImg from 'assets/images/illustration.svg'
 import logoImg from 'assets/images/logo.svg'
 import { Link } from 'react-router-dom'
 import { useNewRoomContext } from 'hooks/context/NewRoom'
+import { FormEvent } from 'react'
 
 export function NewRoomTemplate() {
+  const history = useHistory()
   const { newRoom, setNewRoom, handleCreateRoom } = useNewRoomContext()
+
+  async function handleFirebaseCreateRoom(event: FormEvent) {
+    const urlId = await handleCreateRoom(event)
+    if (urlId) {
+      history.push(`/rooms/${urlId}`)
+    }
+  }
 
   return (
     <Grid w="100%" h="100vh" templateColumns="repeat(2, 1fr)">
@@ -61,7 +71,7 @@ export function NewRoomTemplate() {
             colorScheme="purple"
             text="Criar sala"
             leftIcon={<CgEnter />}
-            onClick={(event) => handleCreateRoom(event)}
+            onClick={(event) => handleFirebaseCreateRoom(event)}
           />
 
           <Text color="#737380" fontSize="sm" display="flex">

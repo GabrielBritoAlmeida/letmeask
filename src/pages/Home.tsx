@@ -1,5 +1,10 @@
 import { HomeTemplate } from 'templates/Home'
+import { NewRoomProvider } from 'hooks/context/NewRoom'
 
 export function Home() {
-  return <HomeTemplate />
+  return (
+    <NewRoomProvider>
+      <HomeTemplate />
+    </NewRoomProvider>
+  )
 }

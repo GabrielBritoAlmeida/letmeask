@@ -8,8 +8,10 @@ import googleIconImg from 'assets/images/google-icon.svg'
 
 import { useHistory } from 'react-router-dom'
 import { useAuthentication } from 'hooks/context/Authentication'
+import { useNewRoomContext } from 'hooks/context/NewRoom'
 
 export function HomeTemplate() {
+  const { roomCode, setRoomCode, handleJoinRoom } = useNewRoomContext()
   const { signWithGoogle, isAuthentication, user } = useAuthentication()
   const { push } = useHistory()
 
@@ -21,6 +23,14 @@ export function HomeTemplate() {
     if (!isAuthentication || !user) {
       const success = await signWithGoogle()
       if (success) push('/rooms/new')
+    }
+  }
+
+  async function handleEnterRoom() {
+    const isExist = await handleJoinRoom()
+
+    if (isExist) {
+      push(`/rooms/${roomCode}`)
     }
   }
 
@@ -73,6 +83,8 @@ export function HomeTemplate() {
           </Text>
 
           <Input
+            value={roomCode}
+            onChange={(e) => setRoomCode(e.target.value)}
             type="text"
             placeholder="Digite o código da sala"
             focusBorderColor="#6b46c1"
@@ -83,6 +95,7 @@ export function HomeTemplate() {
             text="Entrar na sala"
             type="submit"
             leftIcon={<CgEnter />}
+            onClick={handleEnterRoom}
           />
         </VStack>
       </Flex>

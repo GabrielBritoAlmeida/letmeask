@@ -15,7 +15,7 @@ export function Routes() {
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/rooms/room" exact component={Room} />
+          <Route path="/rooms/:id" exact component={Room} />
           <Route component={NotAuthentication} />
         </Switch>
       </BrowserRouter>
@@ -26,7 +26,7 @@ export function Routes() {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/rooms/new" exact component={NewRoom} />
-        <Route path="/rooms/room" exact component={Room} />
+        <Route path="/rooms/:id" exact component={Room} />
       </Switch>
     </BrowserRouter>
   )
